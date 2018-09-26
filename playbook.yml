@@ -1,0 +1,17 @@
+- hosts: appservers
+  become: True
+  vars_files:
+    - vars/main.yml
+  roles:
+    - geerlingguy.nodejs
+    - geerlingguy.git
+    - thomfab.byobu
+  tasks:
+    - name: Install Express
+      shell: npm install express --save
+    - name: Install PM2
+      shell: npm install pm2 -g
+    - name: "Install my Git Thing"
+      git: repo=https://github.com/jimoconnell/nodemin.git dest=/home/jim/nodemin clone=yes update=yes 
+    - name: Run Git Thing
+      shell: pm2 start  /home/jim/nodemin/app.js -i -1
