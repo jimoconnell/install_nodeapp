@@ -3,7 +3,7 @@
   tasks:
     - name: "Install my Git Thing"
       #git: repo=https://github.com/jimoconnell/nodemin.git dest=/home/jim/nodemin clone=yes update=yes 
-      git: repo=https://github.com/hollyward/aka.git dest=/home/jim/aka clone=yes update=yes 
+      git: repo=https://github.com/jimoconnell/nodemin.git  dest=/home/jim/nodemin clone=yes update=yes 
 
     - name: Delete old pm2 process
       command: pm2 delete app

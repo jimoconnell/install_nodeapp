@@ -4,8 +4,8 @@
     - vars/main.yml
   roles:
     - geerlingguy.nodejs
-    - geerlingguy.git
     - thomfab.byobu
+    - jimoconnell.ansible_role_git
   tasks:
     - name: Install Express
       shell: npm install express --save
@@ -13,5 +13,11 @@
       shell: npm install pm2 -g
     - name: "Install my Git Thing"
       git: repo=https://github.com/jimoconnell/nodemin.git dest=/home/jim/nodemin clone=yes update=yes 
+
+    - name: Delete old pm2 process
+      command: pm2 delete app
+      ignore_errors: yes
+
     - name: Run Git Thing
-      shell: pm2 start  /home/jim/nodemin/app.js -i -1
+      command: pm2 start  /home/jim/aka/app.js -i -1
+
